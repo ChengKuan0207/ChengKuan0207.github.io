@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>回车删除</title>
+    </head>
+    <body> 
+        <a>回车删除</a><br><br />
+        <textarea id="inputText" rows="15" cols="100"></textarea><br><br />
+        <button onclick="deleteNewlines()">删除</button><br><br />
+        <textarea id="outputText" rows="15" cols="100" readonly></textarea>
+        <script>
+            function deleteNewlines() {
+              var inputText = document.getElementById("inputText").value;
+              var outputText = inputText.replace(/(\r\n|\n|\r)/gm, " ");
+              document.getElementById("outputText").value = outputText;
+            }
+          </script>
+    </body>
+</html>
