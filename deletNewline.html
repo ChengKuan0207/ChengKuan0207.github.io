@@ -29,9 +29,9 @@
         }
 
         function copy() {
-          var englishName = document.getElementById("outputText");
-          englishName.select();
-          englishName.setSelectionRange(0, 99999);
+          var copyText = document.getElementById("outputText");
+          copyText.select();
+          copyText.setSelectionRange(0, 99999);
           document.execCommand("copy");
           alert("已复制到剪贴板");
         }

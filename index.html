@@ -5,24 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>kHome</title>
+    
+    <style>
+        h2 {color: blue;}
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 10px;
+            border-radius: 12px;
+            width: 100px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+        .button1 {
+            background-color: white;
+            color: black;
+            border: 2px solid #4CAF50;
+
+        }
+        .button1:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .disabled{
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+    </style>
 </head>
 <body>
    
-    📧：chengkuan0207@gmail.com
-    <br />
-    <br />
+    <h2>Transferable：chengkuan0207@gmail.com</h2>
 
-    <h1>一些小🔧</h1><br />
+    <h1>Tools🔧</h1>
+
+    <hr align="left" size="3" width="200" noshade="red">
     
-    更新时间&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;工具名<br />
+    <p><a href="deletNewline.html" class="button button1">Delete New Lines</a></p>
     
-    <hr align="left" size="3" width="250" noshade="red">
-    
-    20230820&nbsp;&nbsp;&nbsp;
-    <a href="deletNewline.html">文本删除回车</a><br />
-    
-    20230819&nbsp;&nbsp;&nbsp;
-    <a href="nameConvert.html">中文名字转换英文</a><br />
+    <p><a href="nameConvert.html" class="button disabled">Name Convert</a></p>
 
 </body>
 </html>
