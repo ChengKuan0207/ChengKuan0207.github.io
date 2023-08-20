@@ -9,7 +9,7 @@
       <textarea id="inputText" rows="15" cols="100"></textarea><br><br />
       
       <button onclick="deleteNewlines()">删除</button>&nbsp;&nbsp;
-      <button onclick="clear()">清空</button>&nbsp;&nbsp;
+      <button onclick="clearText()">清空</button>&nbsp;&nbsp;
       <button onclick="copy()">复制</button><br><br />
 
       <textarea id="outputText" rows="15" cols="100" readonly></textarea>
@@ -22,7 +22,7 @@
           document.getElementById("outputText").value = outputText;
         }
         
-        function clear() {
+        function clearText() {
           document.getElementById("inputText").value = "";
           document.getElementById("outputText").value = "";
         }
