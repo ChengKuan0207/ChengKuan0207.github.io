@@ -5,15 +5,37 @@
     </head>
     <body> 
       <h1>文本回车删除</h1>  
+      
       <textarea id="inputText" rows="15" cols="100"></textarea><br><br />
+      
       <button onclick="deleteNewlines()">删除</button><br><br />
+      <button onclick="clear()">清空</button><br>
+      <button onclick="copy()">复制</button><br>
+
+
       <textarea id="outputText" rows="15" cols="100" readonly></textarea>
-      <script>
-        function deleteNewlines() {
+     
+     <script>
+       
+       function deleteNewlines() {
           var inputText = document.getElementById("inputText").value;
           var outputText = inputText.replace(/(\r\n|\n|\r)/gm, " ");
           document.getElementById("outputText").value = outputText;
         }
+        
+        function clear() {
+          document.getElementById("inputText").value = "";
+          document.getElementById("outputText").value = "";
+        }
+
+        function copy() {
+          var copyText = document.getElementById("outputText");
+          copyText.select();
+          copyText.setSelectionRange(0, 99999);
+          document.execCommand("copy");
+          alert("已复制到剪贴板");
+        }
+      
       </script>
     </body>
 </html>
