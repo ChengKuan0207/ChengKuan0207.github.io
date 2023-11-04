@@ -5,7 +5,7 @@ submit.addEventListener("click", function () {
     toggleAppear();
     setTimeout(function () {
       toggleAppear();
-      window.location.href = "https://main.chengkuan.top/";
+      window.location.href = "main.html";
     }, 1000);
   });
 
