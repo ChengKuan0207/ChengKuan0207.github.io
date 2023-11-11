@@ -5,7 +5,7 @@ submit.addEventListener("click", function () {
   toggleAppear();
   setTimeout(function () {
     toggleAppear();
-    window.location.href = "html/main.html";
+    window.location.href = "html/main-1.html";
   }, 1000);
 });
 
