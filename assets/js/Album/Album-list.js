@@ -6,4 +6,7 @@ function activate(e) {
     e.target.matches('.prev') && slider.prepend(items[items.length - 1]);
 }
 
-document.addEventListener('click', activate, false);
+
+document.getElementById("btn1").addEventListener("click", function () {
+    window.location.href = "/html/Alum-BJ.html";
+});

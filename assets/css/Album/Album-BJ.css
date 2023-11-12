@@ -1,0 +1,80 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    perspective: clamp(400px, 100vw, 1000px);
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    height: 30vh;
+}
+
+body::before {
+    top: 0;
+    background: linear-gradient(5deg, rgba(0, 0, 0, 0) 30%, #fff);
+}
+
+body::after {
+    bottom: 0;
+    background: linear-gradient(-5deg, #fff, rgba(0, 0, 0, 0) 70%);
+}
+
+.gallery {
+    display: flex;
+    gap: 1vw;
+    max-width: 1200px;
+    min-width: 500px;
+    height: 100vh;
+    transform: translate(5%, -25%) rotate(-6deg) rotateX(10deg) rotateY(20deg);
+}
+
+.gallery_line {
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+    height: fit-content;
+    animation: slide 30s linear infinite;
+}
+
+.gallery_line:nth-child(2) {
+    animation-direction: reverse;
+}
+
+.gallery_line img {
+    flex: 1 1 auto;
+    width: 100%;
+    object-fit: cover;
+}
+
+@keyframes slide {
+    0 {
+        transform: translatey(0);
+    }
+
+    100% {
+        transform: translatey(-50%);
+    }
+}
+
+.Me {
+    position: fixed;
+    z-index: 15;
+    bottom: 20px;
+    left: 50%;
+    color: #111;
+    transform: translateX(-50%);
+    font-weight: 700;
+    text-align: center;
+    opacity: 0.7;
+}
