@@ -1,40 +1,24 @@
-body {
-    color: #111;
-    background: #fff
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap');
 
 body {
-    background: -webkit-linear-gradient(left, #19111f 0%, #2c1e37 100%);
-    background: -moz-linear-gradient(left, #19111f 0%, #2c1e37 100%);
-    background: -o-linear-gradient(left, #19111f 0%, #2c1e37 100%);
-    background: -ms-linear-gradient(left, #19111f 0%, #2c1e37 100%);
-    background: linear-gradient(to right, #19111f 0%, #2c1e37 100%);
-    color: #ede6d5;
-    font-family: "Georgia", serif;
+    font-family: "Georgia", "Noto Sans SC", serif;
     font-size: 14px;
-    margin: 50px 100px 0
+    max-width: 1080px;
+    margin: 0 auto;
+    padding-top: 5%;
 }
 
-@media only screen and (max-width: 600px) {
-    body {
-        margin: 50px 50px 0
-    }
-}
+
 
 a {
-    color: #a085c6;
+    color: green;
     text-decoration: none;
     font-size: 1em;
-    -webkit-transition: all 1s;
-    -moz-transition: all 1s;
-    -o-transition: all 1s;
-    -ms-transition: all 1s;
-    transition: all 1s
 }
 
 a:hover {
-    color: #fcd174;
-    border-color: #fcd174
+    color: #090909;
+    border-color: #0a0909
 }
 
 p,
@@ -68,17 +52,6 @@ header {
     float: left
 }
 
-@media only screen and (max-width: 600px) {
-    header {
-        float: none
-    }
-}
-
-@media only screen and (max-width: 400px) {
-    header {
-        width: 100%
-    }
-}
 
 header img {
     width: 100%;
@@ -101,24 +74,6 @@ header small {
     font-size: .7em
 }
 
-@media only screen and (max-width: 600px) {
-    .content {
-        font-size: 16px;
-        max-width: 450px;
-        margin-top: 50px;
-        border-top: 1px solid #382640;
-        padding: 40px 0 100px
-    }
-}
-
-@media only screen and (min-width: 600px) {
-    .content {
-        margin-left: 250px;
-        font-size: 16px;
-        max-width: 1100px
-    }
-}
-
 .content p {
     margin-bottom: 30px
 }
@@ -128,5 +83,5 @@ header small {
 }
 
 .highlight {
-    color: greenyellow;
+    color: rgb(28, 14, 157);
 }
