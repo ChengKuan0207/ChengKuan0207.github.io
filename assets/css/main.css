@@ -136,6 +136,11 @@ strong {
     }
 }
 
+tr {
+    width: fit-content;
+    height: auto;
+}
+
 td {
     height: 50px;
 }
@@ -143,4 +148,22 @@ td {
 td:nth-child(2),
 td:nth-child(4) {
     padding-right: 1.5em;
+}
+
+.dialog {
+    display: none;
+    background: #f1f1f1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    /* 圆角效果 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* 阴影效果 */
+    position: absolute;
+    z-index: 999;
+    /* 设置合适的层叠顺序 */
+    width: 200px;
+    height: auto;
+    text-align: center;
+    /* 文本水平居中 */
 }
