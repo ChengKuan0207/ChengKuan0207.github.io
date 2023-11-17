@@ -85,3 +85,7 @@ header small {
 .highlight {
     color: rgb(28, 14, 157);
 }
+
+small {
+    font-size: 0.5em
+}
