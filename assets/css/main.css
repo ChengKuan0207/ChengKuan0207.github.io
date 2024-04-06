@@ -14,6 +14,12 @@ a {
     font-size: 20px;
 }
 
+#a-eaasylist {
+    color: rgb(14, 18, 220);
+    text-decoration: underline;
+    font-size: 20px;
+}
+
 strong {
     font-size: 20px;
 }
@@ -64,6 +70,33 @@ strong {
     padding-top: 5%;
     padding-bottom: 5%;
 }
+
+.main-eassy {
+
+    width: 500px;
+    height: 200px;
+    margin: 0 auto;
+    display: flex;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-eassy-content {
+
+    width: 1000px;
+    height: 200px;
+    margin: 0 auto;
+    display: flex;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .main-left {
     width: 400px;
@@ -174,4 +207,9 @@ footer {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+}
+
+ol li {
+    font-size: 25px;
+    /* 设置排序数字的字号 */
 }
