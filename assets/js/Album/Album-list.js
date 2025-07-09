@@ -8,6 +8,3 @@ function activate(e) {
 
 document.addEventListener('click', activate, false)
 
-document.getElementById("btn1").addEventListener("click", function () {
-    window.location.href = "/html/Alum-BJ.html";
-});
