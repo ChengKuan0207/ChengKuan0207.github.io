@@ -1,96 +1,127 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap');
 
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: "Georgia", "Noto Sans SC", serif;
-    font-size: 14px;
+    display: flex;
+    gap: 56px;
     max-width: 1080px;
     margin: 0 auto;
-    padding-top: 5%;
+    padding: 5% 24px;
+    color: #161616;
+    font-family: "Georgia", "Noto Sans SC", serif;
+    font-size: 14px;
+    line-height: 1.6;
 }
-
-
 
 a {
-    color: green;
+    color: #168038;
     text-decoration: none;
-    font-size: 1em;
 }
 
-a:hover {
+a:hover,
+a:focus {
     color: #090909;
-    border-color: #0a0909
+    text-decoration: underline;
 }
 
+h1,
+h2,
 p,
-span {
-    line-height: 1.5
+ul {
+    margin-top: 0;
 }
 
 h1 {
+    margin-bottom: 24px;
     font-size: 2em;
-    margin-bottom: 30px
+    line-height: 1.1;
 }
 
-strong {
-    font-weight: bold
+h2 {
+    margin-bottom: 12px;
+    color: rgb(28, 14, 157);
+    font-size: 1.1em;
 }
 
-strong a {
-    border: none
+section {
+    margin-bottom: 30px;
 }
 
 ul {
+    padding-left: 0;
     list-style: none;
-    margin: 0;
-    padding: 0
 }
 
-header {
-    width: 220px;
-    min-height: 100vh;
-    padding: 0 50px 0px 0;
-    position: relative;
-    float: left
-}
-
-
-header img {
-    width: 100%;
-    margin-bottom: 20px
-}
-
-header nav ul {
-    margin-bottom: 20px
-}
-
-header nav ul li {
-    margin-bottom: 10px
-}
-
-header p {
-    margin-bottom: 20px;
-}
-
-header small {
-    font-size: .7em
-}
-
-.content p {
-    margin-bottom: 30px
-}
-
-.content p strong {
-    font-weight: 600
-}
-
-.highlight {
-    color: rgb(28, 14, 157);
-}
-
-.highlightqikan {
-    color: rgb(243, 8, 8);
+li {
+    margin-bottom: 12px;
 }
 
 small {
-    font-size: 0.5em
+    font-size: 0.75em;
+}
+
+.profile {
+    flex: 0 0 220px;
+    min-height: 100vh;
+}
+
+.profile img {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.profile p {
+    margin-bottom: 20px;
+}
+
+.profile-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+}
+
+.content {
+    flex: 1;
+    min-width: 0;
+}
+
+.publications li {
+    display: grid;
+    grid-template-columns: 48px minmax(180px, 260px) 1fr;
+    gap: 8px 14px;
+    align-items: baseline;
+}
+
+.year {
+    font-weight: 600;
+}
+
+@media (max-width: 720px) {
+    body {
+        display: block;
+        padding: 28px 20px;
+    }
+
+    .profile {
+        min-height: auto;
+        margin-bottom: 36px;
+    }
+
+    .profile img {
+        max-width: 220px;
+    }
+
+    .publications li {
+        display: block;
+    }
+
+    .publications .year,
+    .publications i,
+    .publications span {
+        display: block;
+    }
 }
