@@ -1,60 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
   <meta charset="UTF-8">
-  <title>Album-list | Kuan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="/assets/pic/Public/icon.png">
-  <link rel="stylesheet" href="/assets/css/Album-list.css">
-
+  <link rel="stylesheet" href="/assets/css/Album-list.css?v=20260516-3">
+  <script src="/assets/js/Album/Album-list.js?v=20260516-3" defer></script>
+  <title>Album | Kuan</title>
 </head>
 
 <body>
-  <!-- partial:index.partial.html -->
-  <main>
-    <ul class='slider'>
-      <li class='item' style="background-image: url('/assets/pic/Album/Album-list/XG.jpg')">
-        <div class='content'>
-          <h2 class='title'>"香港"</h2>
+  <header class="nav">
+    <div class="navcenter">
+      <div class="navicon">
+        <img src="/assets/pic/Public/icon.png" id="navLogo" alt="Kuan logo">
+      </div>
+      <nav class="navindex" aria-label="主导航">
+        <div>
+          <a href="/html/main.html">首页</a>
         </div>
-      </li>
-      <li class='item' style="background-image: url('/assets/pic/Album/Album-list/BJ.jpg')">
-        <div class='content'>
-          <h2 class='title'>"北京"</h2>
+        <div>
+          <a href="/html/Tool/Tool-list.html">工具</a>
         </div>
-      </li>
-      <li class='item' style="background-image: url('/assets/pic/Album/Album-list/SH.jpg')">
-        <div class='content'>
-          <h2 class='title'>"上海"</h2>
+        <div>
+          <a href="/html/Album/Album-list.html" aria-current="page">相册</a>
         </div>
-      </li>
-      <li class='item' style="background-image: url('/assets/pic/Album/Album-list/FZ.jpg')">
-        <div class='content'>
-          <h2 class='title'>"福建"</h2>
+        <div>
+          <a href="/html/Essay/Essay-list.html">学习</a>
         </div>
-      </li>
-      <li class='item' style="background-image: url('/assets/pic/Album/Album-list/JZ.jpg')">
-        <div class='content'>
-          <h2 class='title'>"浙江"</h2>
+        <div>
+          <a href="/html/CV/cv.html">关于</a>
         </div>
-      </li>
-      <li class='item' style="background-image: url('/assets/pic/Album/Album-list/JS.jpg')">
-        <div class='content'>
-          <h2 class='title'>"江苏"</h2>
+      </nav>
+    </div>
+  </header>
+
+  <main class="album-page">
+    <section class="album-header">
+      <p class="eyebrow">Travel Atlas</p>
+      <h1>相册地图</h1>
+      <p>把去过的地方先钉在地图上。之后每个点都可以接入对应地区的照片页。</p>
+    </section>
+
+    <section class="map-shell" aria-label="去过的地区地图">
+      <div class="map-stage">
+        <div class="map-card">
+          <svg class="world-map" viewBox="0 0 1000 520" role="img" aria-label="点阵世界地图">
+            <defs>
+              <pattern id="dotPattern" width="11" height="11" patternUnits="userSpaceOnUse">
+                <circle cx="3" cy="3" r="2.1" />
+              </pattern>
+              <mask id="worldMask">
+                <rect width="1000" height="520" fill="black" />
+                <path fill="white" d="M72 156l34-43 72-32 96-2 87 35 44 61-17 55-76 10-30 36 45 26-14 39-75-8-42-49-57-15-30 29-65-16-31-55z" />
+                <path fill="white" d="M282 316l48 17 42 58-5 74-43 34-44-39-25-72z" />
+                <path fill="white" d="M455 134l52-31 70 11 38 34-28 40-63 1-48 31-44-28z" />
+                <path fill="white" d="M506 226l66-14 60 44 28 83-28 96-65 2-45-59-42-73z" />
+                <path fill="white" d="M584 139l95-53 142 7 113 52 34 70-58 63-98-16-40 41 38 44-52 36-64-58-60-9-41-74 34-41z" />
+                <path fill="white" d="M772 299l42 19 34 43-29 38-48-17-24-43z" />
+                <path fill="white" d="M808 382l80-21 73 33 10 48-62 35-82-17z" />
+              </mask>
+            </defs>
+
+            <rect class="dot-land" width="1000" height="520" mask="url(#worldMask)" />
+            <text class="continent-label" x="222" y="310">AMERICA</text>
+            <text class="continent-label" x="505" y="244">EUROPE</text>
+            <text class="continent-label" x="555" y="366">AFRICA</text>
+            <text class="continent-label" x="748" y="250">ASIA</text>
+            <text class="continent-label" x="805" y="430">OCEANIA</text>
+          </svg>
+
+          <div class="marker-layer" aria-label="城市点位">
+            <a class="map-marker" href="#" data-place="京津冀" data-region="中国华北" data-status="北京 / 天津" data-cluster="京津冀" style="--x: 78.5%; --y: 39.2%;">京津冀</a>
+            <a class="map-marker" href="#" data-place="长三角" data-region="中国华东" data-status="上海 / 南京 / 杭州 / 舟山" data-cluster="长三角" style="--x: 79.3%; --y: 46.0%;">长三角</a>
+            <a class="map-marker" href="#" data-place="福建" data-region="中国东南" data-status="福州 / 厦门" data-cluster="福建" style="--x: 78.8%; --y: 52.5%;">福建</a>
+            <a class="map-marker" href="#" data-place="珠三角" data-region="中国华南" data-status="广州 / 深圳 / 珠海 / 香港 / 澳门" data-cluster="珠三角" style="--x: 76.9%; --y: 57.0%;">珠三角</a>
+            <a class="map-marker international" href="#" data-place="泰国" data-region="泰国" data-status="曼谷 / 普吉岛" data-cluster="泰国" style="--x: 74.4%; --y: 68.0%;">泰国</a>
+          </div>
         </div>
-      </li>
-    </ul>
-    <nav class='nav'>
-      <ion-icon class='btn prev' name="arrow-back-outline"></ion-icon>
-      <ion-icon class='btn next' name="arrow-forward-outline"></ion-icon>
-    </nav>
+
+        <div class="map-loupe" id="mapLoupe" aria-live="polite">
+          <p id="loupeTitle">华北</p>
+          <div class="loupe-grid" id="loupeGrid"></div>
+        </div>
+      </div>
+
+      <aside class="album-panel">
+        <p class="panel-kicker">当前选中</p>
+        <h2 id="selectedPlace">北京</h2>
+        <p id="selectedRegion">中国华北</p>
+        <p id="selectedStatus">照片页待建设</p>
+      </aside>
+    </section>
+
+    <section class="visited-list" aria-label="已去过地区列表">
+      <h2>已去过</h2>
+      <div class="visited-tags">
+        <a href="#" data-place="北京">北京</a>
+        <a href="#" data-place="上海">上海</a>
+        <a href="#" data-place="福州">福州</a>
+        <a href="#" data-place="南京">南京</a>
+        <a href="#" data-place="杭州">杭州</a>
+        <a href="#" data-place="舟山">舟山</a>
+        <a href="#" data-place="广州">广州</a>
+        <a href="#" data-place="深圳">深圳</a>
+        <a href="#" data-place="珠海">珠海</a>
+        <a href="#" data-place="香港">香港</a>
+        <a href="#" data-place="澳门">澳门</a>
+        <a href="#" data-place="天津">天津</a>
+        <a href="#" data-place="厦门">厦门</a>
+        <a href="#" data-place="曼谷">曼谷</a>
+        <a href="#" data-place="普吉岛">普吉岛</a>
+      </div>
+    </section>
   </main>
 
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  <!-- partial -->
-  <script src="/assets/js/Album/Album-list.js"></script>
-
+  <footer>
+    Page last updated: 2026-05-16
+  </footer>
 </body>
 
 </html>

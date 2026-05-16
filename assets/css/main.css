@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap');
 
+html,
+body {
+    min-height: 100%;
+    background: #f5f3ec;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -8,10 +14,24 @@ body {
     font-size: 14px;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 a {
     color: rgb(235, 16, 20);
     text-decoration: none;
     font-size: 20px;
+}
+
+a[aria-current="page"] {
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+button,
+textarea {
+    font: inherit;
 }
 
 #a-eaasylist {
@@ -27,33 +47,31 @@ strong {
 .nav {
     border-bottom: 3px solid rgb(234, 236, 239);
     margin: 0 auto;
-    width: auto;
-    height: 80px;
-    top: 0;
-    line-height: 80px;
+    width: 100%;
+    background: rgba(245, 243, 236, 0.92);
     z-index: 999;
 }
 
 .navcenter {
     margin: 0 auto;
-    width: 1000px;
-    height: 80px;
-
+    width: min(1000px, calc(100% - 32px));
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
 }
 
 .navicon {
-    float: left;
     height: 60px;
-    margin-left: 20px;
-    margin-top: 10px;
+    flex: 0 0 auto;
 }
 
 .navindex {
-    float: right;
-    width: 400px;
-    display: inline-flex;
+    width: min(400px, 100%);
+    display: flex;
     justify-content: space-evenly;
-
+    gap: 12px;
 }
 
 #navLogo {
@@ -62,11 +80,12 @@ strong {
 
 
 .main {
-
-    width: 1000px;
-    height: 500px;
+    width: min(1000px, calc(100% - 32px));
+    min-height: 500px;
     margin: 0 auto;
     display: flex;
+    align-items: center;
+    gap: 32px;
     padding-top: 5%;
     padding-bottom: 5%;
 }
@@ -99,9 +118,8 @@ strong {
 
 
 .main-left {
-    width: 400px;
-    height: 550px;
-    flex: 1;
+    flex: 1 1 420px;
+    min-height: 550px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -110,8 +128,7 @@ strong {
 
 
 .main-right {
-    width: 400px;
-    height: inherit;
+    flex: 1 1 420px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -120,7 +137,7 @@ strong {
 
 
 .main-right-content {
-    height: 500px;
+    min-height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -137,37 +154,37 @@ strong {
     margin-bottom: var(--size);
     place-items: start center;
     gap: 5px;
+}
 
-    &:has(:hover) img:not(:hover),
-    &:has(:focus) img:not(:focus) {
-        filter: brightness(0.5) contrast(0.5);
-    }
+.gallery:has(:hover) img:not(:hover),
+.gallery:has(:focus) img:not(:focus) {
+    filter: brightness(0.5) contrast(0.5);
+}
 
-    & img {
-        object-fit: cover;
-        width: calc(var(--size) * 2);
-        height: calc(var(--size) * 2);
-        clip-path: path("M90,10 C100,0 100,0 110,10 190,90 190,90 190,90 200,100 200,100 190,110 190,110 110,190 110,190 100,200 100,200 90,190 90,190 10,110 10,110 0,100 0,100 10,90Z");
-        transition: clip-path 0.25s, filter 0.75s;
-        grid-column: auto / span 2;
-        border-radius: 5px;
+.gallery img {
+    object-fit: cover;
+    width: calc(var(--size) * 2);
+    height: calc(var(--size) * 2);
+    clip-path: path("M90,10 C100,0 100,0 110,10 190,90 190,90 190,90 200,100 200,100 190,110 190,110 110,190 110,190 100,200 100,200 90,190 90,190 10,110 10,110 0,100 0,100 10,90Z");
+    transition: clip-path 0.25s, filter 0.75s;
+    grid-column: auto / span 2;
+    border-radius: 5px;
+}
 
-        &:nth-child(5n - 1) {
-            grid-column: 2 / span 2
-        }
+.gallery img:nth-child(5n - 1) {
+    grid-column: 2 / span 2;
+}
 
-        &:hover,
-        &:focus {
-            clip-path: path("M0,0 C0,0 200,0 200,0 200,0 200,100 200,100 200,100 200,200 200,200 200,200 100,200 100,200 100,200 100,200 0,200 0,200 0,100 0,100 0,100 0,100 0,100Z");
-            z-index: 1;
-            transition: clip-path 0.25s, filter 0.25s;
-        }
+.gallery img:hover,
+.gallery img:focus {
+    clip-path: path("M0,0 C0,0 200,0 200,0 200,0 200,100 200,100 200,100 200,200 200,200 200,200 100,200 100,200 100,200 100,200 0,200 0,200 0,100 0,100 0,100 0,100 0,100Z");
+    z-index: 1;
+    transition: clip-path 0.25s, filter 0.25s;
+}
 
-        &:focus {
-            outline: 1px dashed black;
-            outline-offset: -5px;
-        }
-    }
+.gallery img:focus {
+    outline: 1px dashed black;
+    outline-offset: -5px;
 }
 
 tr {
@@ -177,6 +194,23 @@ tr {
 
 td {
     height: 50px;
+}
+
+td img {
+    width: auto;
+    height: 25px;
+    vertical-align: middle;
+}
+
+.tag-cell {
+    cursor: help;
+    position: relative;
+    white-space: nowrap;
+}
+
+.tag-cell:focus {
+    outline: 1px dashed #232019;
+    outline-offset: 3px;
 }
 
 td:nth-child(2),
@@ -200,16 +234,213 @@ td:nth-child(4) {
     height: auto;
     text-align: center;
     /* 文本水平居中 */
+    pointer-events: none;
 }
 
 
 footer {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    text-align: center;
+    padding: 24px 16px;
 }
 
 ol li {
     font-size: 25px;
     /* 设置排序数字的字号 */
+}
+
+.tool-page {
+    width: min(1000px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 48px 0 56px;
+}
+
+.tool-header {
+    max-width: 720px;
+    margin-bottom: 28px;
+}
+
+.tool-header h1 {
+    margin: 0 0 12px;
+    font-size: 32px;
+    line-height: 1.2;
+}
+
+.tool-header p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+.tool-card {
+    display: flex;
+    min-height: 132px;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    color: #232019;
+    border: 1px solid rgb(234, 236, 239);
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(35, 32, 25, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tool-card:hover,
+.tool-card:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(35, 32, 25, 0.1);
+}
+
+.tool-card-title {
+    color: rgb(235, 16, 20);
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.tool-card-desc {
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.newline-tool {
+    padding: 24px;
+    border: 1px solid rgb(234, 236, 239);
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(35, 32, 25, 0.06);
+}
+
+.textarea-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.textarea-grid label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.textarea-grid textarea {
+    width: 100%;
+    min-height: 320px;
+    resize: vertical;
+    padding: 14px;
+    border: 1px solid #d5d7db;
+    border-radius: 8px;
+    color: #232019;
+    line-height: 1.7;
+}
+
+.textarea-grid textarea:focus {
+    border-color: rgb(235, 16, 20);
+    outline: 2px solid rgba(235, 16, 20, 0.12);
+}
+
+.tool-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.tool-actions button {
+    min-width: 96px;
+    padding: 10px 18px;
+    color: #fff;
+    cursor: pointer;
+    border: 0;
+    border-radius: 8px;
+    background: rgb(235, 16, 20);
+}
+
+.tool-actions button:hover,
+.tool-actions button:focus {
+    background: rgb(196, 14, 18);
+}
+
+.tool-status {
+    min-height: 22px;
+    margin: 14px 0 0;
+    color: #4b4b4b;
+}
+
+@media (max-width: 860px) {
+    .navcenter {
+        flex-direction: column;
+        padding: 12px 0;
+    }
+
+    .navindex {
+        flex-wrap: wrap;
+    }
+
+    .main {
+        flex-direction: column;
+        gap: 8px;
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+
+    .main-left {
+        min-height: 420px;
+    }
+
+    .main-right-content {
+        min-height: auto;
+        align-items: center;
+        overflow-x: auto;
+        width: 100%;
+    }
+
+    .gallery {
+        --size: 76px;
+        transform: scale(0.9);
+    }
+
+    .textarea-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+    a {
+        font-size: 18px;
+    }
+
+    .main-left {
+        min-height: 340px;
+    }
+
+    .gallery {
+        --size: 58px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    td {
+        height: 42px;
+    }
+
+    td img {
+        height: 22px;
+    }
 }

@@ -1,44 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
-  <title>文本回车删除</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20260516">
+  <script src="/assets/js/deletNewline.js" defer></script>
+  <link rel="icon" href="/assets/pic/Public/icon.png">
+  <title>删除换行 | Kuan</title>
 </head>
 
 <body>
-  <h1>文本回车删除</h1>
+  <header class="nav">
+    <div class="navcenter">
+      <div class="navicon">
+        <img src="/assets/pic/Public/icon.png" id="navLogo" alt="Kuan logo">
+      </div>
+      <nav class="navindex" aria-label="主导航">
+        <div>
+          <a href="/html/main.html">首页</a>
+        </div>
+        <div>
+          <a href="/html/Tool/Tool-list.html" aria-current="page">工具</a>
+        </div>
+        <div>
+          <a href="/html/Album/Album-list.html">相册</a>
+        </div>
+        <div>
+          <a href="/html/Essay/Essay-list.html">学习</a>
+        </div>
+        <div>
+          <a href="/html/CV/cv.html">关于</a>
+        </div>
+      </nav>
+    </div>
+  </header>
 
-  <textarea id="inputText" rows="15" cols="100"></textarea><br><br />
+  <main class="tool-page">
+    <section class="tool-header">
+      <p><a class="back-link" href="/html/Tool/Tool-list.html">返回工具列表</a></p>
+      <h1>删除换行</h1>
+      <p>把带有回车、换行的文本整理为单行文本，适合处理 PDF、网页复制出来的断行内容。</p>
+    </section>
 
-  <button onclick="deleteNewlines()">删除</button>&nbsp;&nbsp;
-  <button onclick="clearText()">清空</button>&nbsp;&nbsp;
-  <button onclick="copy()">复制</button><br><br />
+    <section class="newline-tool" aria-label="删除换行工具">
+      <div class="textarea-grid">
+        <label for="inputText">
+          输入文本
+          <textarea id="inputText" rows="15" placeholder="把需要处理的文本粘贴到这里"></textarea>
+        </label>
 
+        <label for="outputText">
+          输出结果
+          <textarea id="outputText" rows="15" placeholder="处理后的文本会显示在这里" readonly></textarea>
+        </label>
+      </div>
 
-  <textarea id="outputText" rows="15" cols="100" readonly></textarea>
+      <div class="tool-actions">
+        <button type="button" id="deleteButton">删除换行</button>
+        <button type="button" id="clearButton">清空</button>
+        <button type="button" id="copyButton">复制结果</button>
+      </div>
 
-  <script>
+      <p class="tool-status" id="toolStatus" aria-live="polite"></p>
+    </section>
+  </main>
 
-    function deleteNewlines() {
-      var inputText = document.getElementById("inputText").value;
-      var outputText = inputText.replace(/(\r\n|\n|\r)/gm, " ");
-      document.getElementById("outputText").value = outputText;
-    }
-
-    function clearText() {
-      document.getElementById("inputText").value = "";
-      document.getElementById("outputText").value = "";
-    }
-
-    function copy() {
-      var copyText = document.getElementById("outputText");
-      copyText.select();
-      copyText.setSelectionRange(0, 99999);
-      document.execCommand("copy");
-      alert("已复制到剪贴板");
-    }
-
-  </script>
+  <footer>
+    Page last updated: 2026-05-16
+  </footer>
 </body>
 
 </html>
