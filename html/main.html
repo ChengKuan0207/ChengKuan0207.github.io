@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
-    <script src="/assets/js/main.js"></script>
+    <link rel="stylesheet" href="/assets/css/main.css?v=20260516" />
+    <script src="/assets/js/main.js" defer></script>
     <link rel="icon" href="/assets/pic/Public/icon.png">
     <title>Main | Kuan</title>
 </head>
@@ -14,17 +14,17 @@
 
 
 
-    <div class="nav">
+    <header class="nav">
         <div class="navcenter">
             <div class="navicon">
-                <img src="/assets/pic/Public/icon.png" id="navLogo">
+                <img src="/assets/pic/Public/icon.png" id="navLogo" alt="Kuan logo">
             </div>
-            <div class="navindex">
+            <nav class="navindex" aria-label="主导航">
                 <div>
                     <a href="/html/main.html">首页</a>
                 </div>
                 <div>
-                    <a>工具</a>
+                    <a href="/html/Tool/Tool-list.html">工具</a>
                 </div>
                 <div>
                     <a href="/html/Album/Album-list.html">相册</a>
@@ -35,124 +35,98 @@
                 <div>
                     <a href="/html/CV/cv.html">关于</a>
                 </div>
-            </div>
+            </nav>
         </div>
-    </div>
+    </header>
 
 
-    <div class="main">
+    <main class="main">
         <div class="main-left">
-            <article class="gallery">
-                <img src="/assets/pic/Main/Left/man1.jpg" />
-                <img src="/assets/pic/Main/Left/man1.jpg" />
-                <img src="/assets/pic/Main/Left/man1.jpg" />
+            <article class="gallery" aria-label="个人照片墙">
+                <img src="/assets/pic/Main/Left/man1.jpg" alt="Kuan 的个人照片 1" loading="lazy" decoding="async" tabindex="0" />
+                <img src="/assets/pic/Main/Left/man1.jpg" alt="Kuan 的个人照片 2" loading="lazy" decoding="async" tabindex="0" />
+                <img src="/assets/pic/Main/Left/man1.jpg" alt="Kuan 的个人照片 3" loading="lazy" decoding="async" tabindex="0" />
 
-                <img src="/assets/pic/Main/Left/man1.jpg" />
-                <img src="/assets/pic/Main/Left/man1.jpg" />
+                <img src="/assets/pic/Main/Left/man1.jpg" alt="Kuan 的个人照片 4" loading="lazy" decoding="async" tabindex="0" />
+                <img src="/assets/pic/Main/Left/man1.jpg" alt="Kuan 的个人照片 5" loading="lazy" decoding="async" tabindex="0" />
 
-                <img src="/assets/pic/Main/Left/man1.jpg" />
-                <img src="/assets/pic/Main/Left/man1.jpg" />
-                <img src="/assets/pic/Main/Left/man1.jpg" />
+                <img src="/assets/pic/Main/Left/man1.jpg" alt="Kuan 的个人照片 6" loading="lazy" decoding="async" tabindex="0" />
+                <img src="/assets/pic/Main/Left/man1.jpg" alt="Kuan 的个人照片 7" loading="lazy" decoding="async" tabindex="0" />
+                <img src="/assets/pic/Main/Left/man1.jpg" alt="Kuan 的个人照片 8" loading="lazy" decoding="async" tabindex="0" />
             </article>
         </div>
 
         <div class="main-right">
             <div class="main-right-background">
                 <div class="main-right-content">
-                    <strong>你好!&nbsp&nbsp我是Kuan 👏</strong>
-                    </br>
+                    <strong>你好!&nbsp;&nbsp;我是Kuan 👏</strong>
                     <table>
                         <tr>
-                            <td style="position: relative;" onmouseover="showDialog('出生在东北，定居在宇宙', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">
-                                半东北人</td>
-                            <td><img src="/assets/pic/Main/Right/11.jpg" height="50%" width="auto" /></td>
-                            <td style="position: relative;" onmouseover="showDialog('国籍', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">纯中国人</td>
-                            <td><img src="/assets/pic/Main/Right/12.jpg" height="50%" width="auto" /></td>
-                            <td style="position: relative;" onmouseover="showDialog('战狠小粉红、铁皿自干五', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">共产主义</td>
-                            <td><img src="/assets/pic/Main/Right/13.jpg" height="50%" width="auto" /></td>
+                            <td class="tag-cell" data-tooltip="出生在东北，定居在宇宙" tabindex="0">半东北人</td>
+                            <td><img src="/assets/pic/Main/Right/11.jpg" alt="半东北人" loading="lazy" decoding="async" /></td>
+                            <td class="tag-cell" data-tooltip="国籍" tabindex="0">纯中国人</td>
+                            <td><img src="/assets/pic/Main/Right/12.jpg" alt="纯中国人" loading="lazy" decoding="async" /></td>
+                            <td class="tag-cell" data-tooltip="战狠小粉红、铁皿自干五" tabindex="0">共产主义</td>
+                            <td><img src="/assets/pic/Main/Right/13.jpg" alt="共产主义" loading="lazy" decoding="async" /></td>
                         </tr>
 
                         <tr>
-                            <td style="position: relative;" onmouseover="showDialog('**2次元，**3次元', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">2.5次元</td>
-                            <td><img src="/assets/pic/Main/Right/21.jpg" height="50%" width="auto" /></td>
-                            <td style="position: relative;"
-                                onmouseover="showDialog('R-star; Nintendo; CAPCOM; Blizzard', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">主机党</td>
-                            <td><img src="/assets/pic/Main/Right/22.jpg" height="50%" width="auto" /></td>
-                            <td style="position: relative;" onmouseover="showDialog('TBBT; HIMYM; GOT', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">美剧迷</td>
-                            <td><img src="/assets/pic/Main/Right/23.jpg" height="50%" width="auto" /></td>
+                            <td class="tag-cell" data-tooltip="**2次元，**3次元" tabindex="0">2.5次元</td>
+                            <td><img src="/assets/pic/Main/Right/21.jpg" alt="2.5次元" loading="lazy" decoding="async" /></td>
+                            <td class="tag-cell" data-tooltip="R-star; Nintendo; CAPCOM; Blizzard" tabindex="0">主机党</td>
+                            <td><img src="/assets/pic/Main/Right/22.jpg" alt="主机党" loading="lazy" decoding="async" /></td>
+                            <td class="tag-cell" data-tooltip="TBBT; HIMYM; GOT" tabindex="0">美剧迷</td>
+                            <td><img src="/assets/pic/Main/Right/23.jpg" alt="美剧迷" loading="lazy" decoding="async" /></td>
                         </tr>
                         <tr>
-                            <td style="position: relative;"
-                                onmouseover="showDialog('Avril R. Lavigne', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">欧美pop</td>
-                            <td><img src="/assets/pic/Main/Right/31.jpg" height="50%" width="auto" /></td>
-                            <td style="position: relative;" onmouseover="showDialog('Hala Madrid', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">体育迷</td>
-                            <td><img src="/assets/pic/Main/Right/32.jpg" height="50%" width="auto" /></td>
-                            <td style="position: relative;" onmouseover="showDialog('想上天，想升仙', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">旅行家</td>
-                            <td><img src="/assets/pic/Main/Right/33.jpg" height="50%" width="auto" /></td>
+                            <td class="tag-cell" data-tooltip="Avril R. Lavigne" tabindex="0">欧美pop</td>
+                            <td><img src="/assets/pic/Main/Right/31.jpg" alt="欧美pop" loading="lazy" decoding="async" /></td>
+                            <td class="tag-cell" data-tooltip="Hala Madrid" tabindex="0">体育迷</td>
+                            <td><img src="/assets/pic/Main/Right/32.jpg" alt="体育迷" loading="lazy" decoding="async" /></td>
+                            <td class="tag-cell" data-tooltip="想上天，想升仙" tabindex="0">旅行家</td>
+                            <td><img src="/assets/pic/Main/Right/33.jpg" alt="旅行家" loading="lazy" decoding="async" /></td>
                         </tr>
                         <tr>
-                            <td style="position: relative;" onmouseover="showDialog('学历', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">博士在读</td>
-                            <td><img src="/assets/pic/Main/Right/41.jpg" height="50%" width="auto" /></td>
-                            <td style="position: relative;" onmouseover="showDialog('**文科', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">理工为王</td>
-                            <td><img src="/assets/pic/Main/Right/42.jpg" height="50%" width="auto" /></td>
-                            <td style="position: relative;" onmouseover="showDialog('开始幻想', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">虚空院士</td>
-                            <td><img src="/assets/pic/Main/Right/43.jpg" height="50%" width="auto" /></td>
+                            <td class="tag-cell" data-tooltip="学历" tabindex="0">博士在读</td>
+                            <td><img src="/assets/pic/Main/Right/41.jpg" alt="博士在读" loading="lazy" decoding="async" /></td>
+                            <td class="tag-cell" data-tooltip="**文科" tabindex="0">理工为王</td>
+                            <td><img src="/assets/pic/Main/Right/42.jpg" alt="理工为王" loading="lazy" decoding="async" /></td>
+                            <td class="tag-cell" data-tooltip="开始幻想" tabindex="0">虚空院士</td>
+                            <td><img src="/assets/pic/Main/Right/43.jpg" alt="虚空院士" loading="lazy" decoding="async" /></td>
                         </tr>
                         <tr>
-                            <td style="position: relative;" onmouseover="showDialog('我是变态', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">强迫症</td>
-                            <td><img src="/assets/pic/Main/Right/51.jpg" height="50%" width="auto" /></td>
-                            <td style="position: relative;" onmouseover="showDialog('我是正常人', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">拖延症</td>
-                            <td><img src="/assets/pic/Main/Right/52.jpg" height="50%" width="auto" /></td>
-                            <td style="position: relative;" onmouseover="showDialog('阿巴！阿巴！', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">享乐主义</td>
-                            <td><img src="/assets/pic/Main/Right/53.jpg" height="50%" width="auto" /></td>
+                            <td class="tag-cell" data-tooltip="我是变态" tabindex="0">强迫症</td>
+                            <td><img src="/assets/pic/Main/Right/51.jpg" alt="强迫症" loading="lazy" decoding="async" /></td>
+                            <td class="tag-cell" data-tooltip="我是正常人" tabindex="0">拖延症</td>
+                            <td><img src="/assets/pic/Main/Right/52.jpg" alt="拖延症" loading="lazy" decoding="async" /></td>
+                            <td class="tag-cell" data-tooltip="阿巴！阿巴！" tabindex="0">享乐主义</td>
+                            <td><img src="/assets/pic/Main/Right/53.jpg" alt="享乐主义" loading="lazy" decoding="async" /></td>
                         </tr>
                         <tr>
-                            <td style="position: relative;"
-                                onmouseover="showDialog('You are always right', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">反宗教</td>
-                            <td><img src="/assets/pic/Main/Right/61.jpg" height="50%" width="auto" /></td>
-                            <td style="position: relative;" onmouseover="showDialog('口区口区，我**你个大**', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">反LGBT</td>
-                            <td><img src="/assets/pic/Main/Right/62.jpg" height="50%" width="auto" /></td>
-                            <td style="position: relative;" onmouseover="showDialog('如图', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">种族主义</td>
-                            <td><img src="/assets/pic/Main/Right/63.jpg" height="50%" width="auto" /></td>
+                            <td class="tag-cell" data-tooltip="You are always right" tabindex="0">反宗教</td>
+                            <td><img src="/assets/pic/Main/Right/61.jpg" alt="反宗教" loading="lazy" decoding="async" /></td>
+                            <td class="tag-cell" data-tooltip="口区口区，我**你个大**" tabindex="0">反LGBT</td>
+                            <td><img src="/assets/pic/Main/Right/62.jpg" alt="反LGBT" loading="lazy" decoding="async" /></td>
+                            <td class="tag-cell" data-tooltip="如图" tabindex="0">种族主义</td>
+                            <td><img src="/assets/pic/Main/Right/63.jpg" alt="种族主义" loading="lazy" decoding="async" /></td>
                         </tr>
                         <tr>
-                            <td style="position: relative;" onmouseover="showDialog('其实是ISTJ', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">ESTJ</td>
-                            <td><img src="/assets/pic/Main/Right/71.jpg" height="50%" width="auto" /></td>
-                            <td style="position: relative;" onmouseover="showDialog('Right is right', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">古典自由</td>
-                            <td><img src="/assets/pic/Main/Right/72.jpg" height="50%" width="auto" /></td>
-                            <td style="position: relative;" onmouseover="showDialog('无病呻吟', 'dialog1', this)"
-                                onmouseout="hideDialog('dialog1')">去标签化</td>
-                            <td><img src="/assets/pic/Main/Right/73.jpg" height="50%" width="auto" /></td>
+                            <td class="tag-cell" data-tooltip="其实是ISTJ" tabindex="0">ESTJ</td>
+                            <td><img src="/assets/pic/Main/Right/71.jpg" alt="ESTJ" loading="lazy" decoding="async" /></td>
+                            <td class="tag-cell" data-tooltip="Right is right" tabindex="0">古典自由</td>
+                            <td><img src="/assets/pic/Main/Right/72.jpg" alt="古典自由" loading="lazy" decoding="async" /></td>
+                            <td class="tag-cell" data-tooltip="无病呻吟" tabindex="0">去标签化</td>
+                            <td><img src="/assets/pic/Main/Right/73.jpg" alt="去标签化" loading="lazy" decoding="async" /></td>
                         </tr>
                     </table>
-                    <div id="dialog1" class="dialog"></div>
+                    <div id="dialog1" class="dialog" role="tooltip"></div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <footer>
-        Page last updated: 2025-06-31
+        Page last updated: 2026-05-16
     </footer>
 </body>
 
