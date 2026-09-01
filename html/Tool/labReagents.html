@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="用于记录试剂名称、CAS 号、储存要求、库存量和存放位置的个人实验室试剂管理工具。">
+    <link rel="stylesheet" href="/assets/css/main.css?v=20260901">
+    <link rel="stylesheet" href="/assets/css/labReagents.css?v=20260901">
+    <script src="/assets/js/labReagents.js?v=20260901" defer></script>
+    <link rel="icon" href="/assets/pic/Public/icon.png">
+    <title>实验室试剂管理 | Kuan</title>
+</head>
+
+<body>
+    <header class="nav">
+        <div class="navcenter">
+            <div class="navicon">
+                <img src="/assets/pic/Public/icon.png" id="navLogo" alt="Kuan logo">
+            </div>
+            <nav class="navindex" aria-label="主导航">
+                <div><a href="/html/main.html">首页</a></div>
+                <div><a href="/html/Tool/Tool-list.html" aria-current="page">工具</a></div>
+                <div><a href="/html/Album/Album-list.html">相册</a></div>
+                <div><a href="/html/Essay/Essay-list.html">学习</a></div>
+                <div><a href="/html/CV/cv.html">关于</a></div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="inventory-page">
+        <section class="inventory-hero" aria-labelledby="pageTitle">
+            <p><a class="back-link" href="/html/Tool/Tool-list.html">返回工具列表</a></p>
+            <div class="inventory-hero-row">
+                <div>
+                    <p class="inventory-eyebrow">LAB REAGENTS</p>
+                    <h1 id="pageTitle">实验室试剂管理</h1>
+                    <p class="inventory-intro">集中记录试剂基本信息、储存要求、库存量和存放位置。</p>
+                </div>
+                <button class="inventory-button inventory-button-primary" id="addReagentButton" type="button">新增试剂</button>
+            </div>
+            <p class="storage-notice">
+                <strong>本机保存：</strong>数据只保存在当前浏览器中，不会自动同步到其他设备。请定期导出备份。
+            </p>
+        </section>
+
+        <section class="summary-grid" aria-label="试剂概览">
+            <article class="summary-card">
+                <span class="summary-label">试剂总数</span>
+                <strong class="summary-value" id="totalReagents">0</strong>
+                <span class="summary-hint">当前记录总数</span>
+            </article>
+            <article class="summary-card summary-card-stock">
+                <span class="summary-label">仍有库存</span>
+                <strong class="summary-value" id="inStockReagents">0</strong>
+                <span class="summary-hint">库存量大于 0</span>
+            </article>
+            <article class="summary-card summary-card-danger">
+                <span class="summary-label">已经用完</span>
+                <strong class="summary-value" id="outOfStockReagents">0</strong>
+                <span class="summary-hint">库存量为 0</span>
+            </article>
+            <article class="summary-card summary-card-cold">
+                <span class="summary-label">低温储存</span>
+                <strong class="summary-value" id="coldStorageReagents">0</strong>
+                <span class="summary-hint">4°C、-20°C 或 -80°C</span>
+            </article>
+        </section>
+
+        <section class="inventory-panel" aria-labelledby="reagentListTitle">
+            <div class="inventory-panel-heading">
+                <div>
+                    <p class="inventory-eyebrow">REAGENTS</p>
+                    <h2 id="reagentListTitle">试剂清单</h2>
+                </div>
+                <p class="result-count" id="resultCount">0 条记录</p>
+            </div>
+
+            <div class="inventory-toolbar reagent-toolbar">
+                <label class="inventory-field inventory-search-field" for="searchInput">
+                    <span>搜索</span>
+                    <input id="searchInput" type="search" placeholder="中英文名称、CAS 号、品牌、批号或存放地">
+                </label>
+
+                <label class="inventory-field" for="temperatureFilter">
+                    <span>储存温度</span>
+                    <select id="temperatureFilter">
+                        <option value="all">全部温度</option>
+                        <option value="room">室温</option>
+                        <option value="4">4°C</option>
+                        <option value="-20">-20°C</option>
+                        <option value="-80">-80°C</option>
+                    </select>
+                </label>
+
+                <label class="inventory-field" for="stockFilter">
+                    <span>库存</span>
+                    <select id="stockFilter">
+                        <option value="all">全部库存</option>
+                        <option value="in">仍有库存</option>
+                        <option value="out">已经用完</option>
+                    </select>
+                </label>
+
+                <label class="inventory-field" for="lightFilter">
+                    <span>是否避光</span>
+                    <select id="lightFilter">
+                        <option value="all">全部</option>
+                        <option value="yes">需要避光</option>
+                        <option value="no">无需避光</option>
+                    </select>
+                </label>
+
+                <label class="inventory-field" for="sealedFilter">
+                    <span>是否密封</span>
+                    <select id="sealedFilter">
+                        <option value="all">全部</option>
+                        <option value="yes">需要密封</option>
+                        <option value="no">无需密封</option>
+                        <option value="unspecified">不区分</option>
+                    </select>
+                </label>
+
+                <label class="inventory-field" for="sortSelect">
+                    <span>排序</span>
+                    <select id="sortSelect">
+                        <option value="updated-desc">最近更新</option>
+                        <option value="chinese-asc">中文名称</option>
+                        <option value="english-asc">英文名称</option>
+                        <option value="quantity-asc">库存从少到多</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="inventory-secondary-actions">
+                <button class="inventory-button inventory-button-secondary" id="exportLegacyButton" type="button" hidden>导出旧耗材数据</button>
+                <button class="inventory-button inventory-button-secondary" id="exportButton" type="button">导出备份</button>
+                <button class="inventory-button inventory-button-secondary" id="importButton" type="button">导入备份</button>
+                <input id="importFileInput" type="file" accept="application/json,.json" aria-label="选择试剂备份文件" hidden>
+            </div>
+
+            <div class="inventory-table-wrap" id="inventoryTableWrap" hidden>
+                <table class="inventory-table reagent-table">
+                    <caption class="visually-hidden">实验室试剂库存清单</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">试剂</th>
+                            <th scope="col">规格 / 来源</th>
+                            <th scope="col">储存要求</th>
+                            <th scope="col">分子量</th>
+                            <th scope="col">库存量</th>
+                            <th scope="col">存放地</th>
+                            <th scope="col">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reagentTableBody"></tbody>
+                </table>
+            </div>
+
+            <div class="inventory-empty" id="emptyState">
+                <span class="empty-mark" aria-hidden="true">+</span>
+                <h3 id="emptyStateTitle">还没有试剂记录</h3>
+                <p id="emptyStateText">点击“新增试剂”，录入第一条试剂信息。</p>
+                <button class="inventory-button inventory-button-primary" id="emptyAddButton" type="button">新增第一条记录</button>
+            </div>
+        </section>
+
+        <p class="inventory-status" id="inventoryStatus" aria-live="polite" aria-atomic="true"></p>
+        <noscript><p class="inventory-noscript">此工具需要启用 JavaScript 才能保存和管理试剂。</p></noscript>
+    </main>
+
+    <dialog class="inventory-dialog reagent-dialog" id="reagentDialog" aria-labelledby="reagentDialogTitle">
+        <form id="reagentForm">
+            <div class="dialog-heading">
+                <div>
+                    <p class="inventory-eyebrow">REAGENT</p>
+                    <h2 id="reagentDialogTitle">新增试剂</h2>
+                </div>
+                <button class="dialog-close" id="closeReagentDialogButton" type="button" aria-label="关闭">×</button>
+            </div>
+
+            <input id="reagentId" name="reagentId" type="hidden">
+
+            <fieldset class="reagent-form-section">
+                <legend>基本信息</legend>
+                <div class="inventory-form-grid">
+                    <label class="inventory-field" for="chineseName">
+                        <span>中文名称 <b aria-hidden="true">*</b></span>
+                        <input id="chineseName" name="chineseName" type="text" maxlength="80" required autocomplete="off" placeholder="例如：磷酸盐缓冲液">
+                    </label>
+
+                    <label class="inventory-field" for="englishName">
+                        <span>英文名称</span>
+                        <input id="englishName" name="englishName" type="text" maxlength="120" autocomplete="off" placeholder="Phosphate buffered saline">
+                    </label>
+
+                    <label class="inventory-field" for="casNumber">
+                        <span>CAS 号</span>
+                        <input id="casNumber" name="casNumber" type="text" maxlength="20" autocomplete="off" placeholder="例如：7732-18-5">
+                    </label>
+
+                    <label class="inventory-field" for="molecularWeight">
+                        <span>分子量（g/mol）</span>
+                        <input id="molecularWeight" name="molecularWeight" type="number" min="0.000001" max="1000000000" step="any" inputmode="decimal" placeholder="选填">
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset class="reagent-form-section">
+                <legend>产品信息</legend>
+                <div class="inventory-form-grid reagent-product-grid">
+                    <label class="inventory-field inventory-field-wide" for="specification">
+                        <span>规格 <b aria-hidden="true">*</b></span>
+                        <input id="specification" name="specification" type="text" maxlength="80" required autocomplete="off" placeholder="例如：分析纯，500 g/瓶">
+                    </label>
+
+                    <label class="inventory-field" for="brand">
+                        <span>品牌</span>
+                        <input id="brand" name="brand" type="text" maxlength="60" autocomplete="off" placeholder="品牌或生产厂家">
+                    </label>
+
+                    <label class="inventory-field" for="lotNumber">
+                        <span>批号</span>
+                        <input id="lotNumber" name="lotNumber" type="text" maxlength="60" autocomplete="off" placeholder="Lot number">
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset class="reagent-form-section">
+                <legend>储存信息</legend>
+                <div class="inventory-form-grid">
+                    <label class="inventory-field" for="storageTemperature">
+                        <span>储存温度 <b aria-hidden="true">*</b></span>
+                        <select id="storageTemperature" name="storageTemperature" required>
+                            <option value="">请选择</option>
+                            <option value="room">室温</option>
+                            <option value="4">4°C</option>
+                            <option value="-20">-20°C</option>
+                            <option value="-80">-80°C</option>
+                        </select>
+                    </label>
+
+                    <label class="inventory-field" for="lightSensitive">
+                        <span>是否需要避光 <b aria-hidden="true">*</b></span>
+                        <select id="lightSensitive" name="lightSensitive" required>
+                            <option value="">请选择</option>
+                            <option value="yes">是</option>
+                            <option value="no">否</option>
+                        </select>
+                    </label>
+
+                    <label class="inventory-field" for="sealedStorage">
+                        <span>是否密封保存 <b aria-hidden="true">*</b></span>
+                        <select id="sealedStorage" name="sealedStorage" required>
+                            <option value="">请选择</option>
+                            <option value="yes">是</option>
+                            <option value="no">否</option>
+                            <option value="unspecified">不区分</option>
+                        </select>
+                    </label>
+
+                    <label class="inventory-field" for="location">
+                        <span>存放地 <b aria-hidden="true">*</b></span>
+                        <input id="location" name="location" type="text" maxlength="100" required autocomplete="off" placeholder="例如：A 实验室，试剂柜 2-3">
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset class="reagent-form-section">
+                <legend>库存与备注</legend>
+                <div class="inventory-form-grid">
+                    <label class="inventory-field" for="quantity">
+                        <span>库存量 <b aria-hidden="true">*</b></span>
+                        <input id="quantity" name="quantity" type="number" min="0" max="1000000000" step="any" inputmode="decimal" required value="0">
+                    </label>
+
+                    <label class="inventory-field inventory-field-wide" for="notes">
+                        <span>备注</span>
+                        <textarea id="notes" name="notes" rows="3" maxlength="500" placeholder="采购信息、配制说明或其他提醒"></textarea>
+                    </label>
+                </div>
+            </fieldset>
+
+            <p class="form-help">标有 * 的项目为必填项；CAS 号和分子量可在不适用时留空；库存量最多保留 6 位小数。</p>
+            <p class="dialog-status" id="reagentDialogStatus" aria-live="assertive" aria-atomic="true"></p>
+            <div class="dialog-actions">
+                <button class="inventory-button inventory-button-secondary" id="cancelReagentButton" type="button">取消</button>
+                <button class="inventory-button inventory-button-primary" type="submit">保存试剂</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog class="inventory-dialog inventory-dialog-small" id="stockDialog" aria-labelledby="stockDialogTitle">
+        <form id="stockForm">
+            <div class="dialog-heading">
+                <div>
+                    <p class="inventory-eyebrow">STOCK</p>
+                    <h2 id="stockDialogTitle">调整库存</h2>
+                </div>
+                <button class="dialog-close" id="closeStockDialogButton" type="button" aria-label="关闭">×</button>
+            </div>
+            <p class="stock-item-name" id="stockReagentName"></p>
+            <input id="stockReagentId" type="hidden">
+
+            <fieldset class="stock-action-options">
+                <legend>调整方式</legend>
+                <label><input type="radio" name="stockAction" value="add" checked> 入库</label>
+                <label><input type="radio" name="stockAction" value="remove"> 领用</label>
+            </fieldset>
+
+            <label class="inventory-field" for="stockAmount">
+                <span>调整数量 <b aria-hidden="true">*</b></span>
+                <input id="stockAmount" type="number" min="0.000001" max="1000000000" step="any" inputmode="decimal" required value="1">
+            </label>
+            <p class="stock-current" id="stockCurrent"></p>
+            <p class="dialog-status" id="stockDialogStatus" aria-live="assertive" aria-atomic="true"></p>
+
+            <div class="dialog-actions">
+                <button class="inventory-button inventory-button-secondary" id="cancelStockButton" type="button">取消</button>
+                <button class="inventory-button inventory-button-primary" type="submit">确认调整</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog class="inventory-dialog inventory-dialog-small" id="importDialog" aria-labelledby="importDialogTitle">
+        <form id="importForm">
+            <div class="dialog-heading">
+                <div>
+                    <p class="inventory-eyebrow">RESTORE</p>
+                    <h2 id="importDialogTitle">导入试剂备份</h2>
+                </div>
+                <button class="dialog-close" id="closeImportDialogButton" type="button" aria-label="关闭">×</button>
+            </div>
+            <p id="importSummary"></p>
+            <fieldset class="import-options">
+                <legend>导入方式</legend>
+                <label>
+                    <input type="radio" name="importMode" value="merge" checked>
+                    <span><strong>合并数据</strong><small>保留现有记录；相同 ID 的记录使用备份内容。</small></span>
+                </label>
+                <label>
+                    <input type="radio" name="importMode" value="replace">
+                    <span><strong>替换全部</strong><small>清空当前清单，只保留备份中的记录。</small></span>
+                </label>
+            </fieldset>
+            <p class="dialog-status" id="importDialogStatus" aria-live="assertive" aria-atomic="true"></p>
+            <div class="dialog-actions">
+                <button class="inventory-button inventory-button-secondary" id="cancelImportButton" type="button">取消</button>
+                <button class="inventory-button inventory-button-primary" type="submit">确认导入</button>
+            </div>
+        </form>
+    </dialog>
+
+    <footer>Page last updated: 2026-09-01</footer>
+</body>
+
+</html>

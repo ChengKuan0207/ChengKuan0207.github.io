@@ -283,6 +283,10 @@ ol li {
     gap: 16px;
 }
 
+.tool-grid-stacked {
+    grid-template-columns: 1fr;
+}
+
 .tool-card {
     display: flex;
     min-height: 132px;
