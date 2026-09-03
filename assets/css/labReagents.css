@@ -182,9 +182,43 @@
 .inventory-secondary-actions {
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-end;
     gap: 9px;
     justify-content: flex-end;
-    margin: 14px 0 20px;
+    margin: 14px 0 8px;
+}
+
+.backup-format-control {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: #625c51;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.backup-format-control select {
+    min-height: 42px;
+    padding: 9px 34px 9px 11px;
+    color: #363129;
+    border: 1px solid #d6d0c4;
+    border-radius: 8px;
+    background: #f8f6f1;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.backup-format-control select:focus {
+    border-color: rgb(235, 16, 20);
+    outline: 3px solid rgba(235, 16, 20, 0.11);
+}
+
+.backup-help {
+    margin: 0 0 20px;
+    color: #716a5f;
+    font-size: 12px;
+    line-height: 1.65;
 }
 
 .inventory-button {
@@ -201,6 +235,12 @@
 
 .inventory-button:hover {
     transform: translateY(-1px);
+}
+
+.inventory-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.52;
+    transform: none;
 }
 
 .inventory-button:focus-visible,
@@ -835,9 +875,16 @@
         justify-content: stretch;
     }
 
-    .inventory-secondary-actions .inventory-button,
+    .inventory-secondary-actions .inventory-button {
+        flex: 1 1 140px;
+    }
+
     .dialog-actions .inventory-button {
         flex: 1 1 0;
+    }
+
+    .backup-format-control {
+        width: 100%;
     }
 
     .inventory-dialog > form {

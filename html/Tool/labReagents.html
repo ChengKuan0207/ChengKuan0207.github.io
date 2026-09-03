@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="用于记录试剂名称、CAS 号、储存要求、库存量和存放位置的个人实验室试剂管理工具。">
-    <link rel="stylesheet" href="/assets/css/main.css?v=20260901">
-    <link rel="stylesheet" href="/assets/css/labReagents.css?v=20260901">
-    <script src="/assets/js/labReagents.js?v=20260901" defer></script>
+    <link rel="stylesheet" href="/assets/css/main.css?v=20260903">
+    <link rel="stylesheet" href="/assets/css/labReagents.css?v=20260903">
+    <script src="/assets/vendor/sheetjs/xlsx.full.min.js?v=0.20.3" defer></script>
+    <script src="/assets/js/labReagents.js?v=20260903" defer></script>
     <link rel="icon" href="/assets/pic/Public/icon.png">
     <title>实验室试剂管理 | Kuan</title>
 </head>
@@ -40,7 +41,7 @@
                 <button class="inventory-button inventory-button-primary" id="addReagentButton" type="button">新增试剂</button>
             </div>
             <p class="storage-notice">
-                <strong>本机保存：</strong>数据只保存在当前浏览器中，不会自动同步到其他设备。请定期导出备份。
+                <strong>本机保存：</strong>数据只保存在当前浏览器中。清除网站数据或更换设备前，请先导出 Excel 或 JSON 备份。
             </p>
         </section>
 
@@ -108,6 +109,7 @@
                         <option value="all">全部</option>
                         <option value="yes">需要避光</option>
                         <option value="no">无需避光</option>
+                        <option value="unspecified">不区分</option>
                     </select>
                 </label>
 
@@ -132,12 +134,22 @@
                 </label>
             </div>
 
-            <div class="inventory-secondary-actions">
+            <div class="inventory-secondary-actions" aria-label="数据备份与恢复">
                 <button class="inventory-button inventory-button-secondary" id="exportLegacyButton" type="button" hidden>导出旧耗材数据</button>
-                <button class="inventory-button inventory-button-secondary" id="exportButton" type="button">导出备份</button>
-                <button class="inventory-button inventory-button-secondary" id="importButton" type="button">导入备份</button>
-                <input id="importFileInput" type="file" accept="application/json,.json" aria-label="选择试剂备份文件" hidden>
+                <label class="backup-format-control" for="exportFormat">
+                    <span>导出格式</span>
+                    <select id="exportFormat">
+                        <option value="xlsx">Excel（.xlsx，推荐）</option>
+                        <option value="xls">Excel 97–2004（.xls）</option>
+                        <option value="json">JSON（.json）</option>
+                    </select>
+                </label>
+                <button class="inventory-button inventory-button-secondary" id="exportButton" type="button">导出数据</button>
+                <button class="inventory-button inventory-button-secondary" id="templateButton" type="button">下载 Excel 模板</button>
+                <button class="inventory-button inventory-button-secondary" id="importButton" type="button">导入文件</button>
+                <input id="importFileInput" type="file" accept=".xlsx,.xls,.json,application/json,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" aria-label="选择 Excel 或 JSON 试剂文件" hidden>
             </div>
+            <p class="backup-help">Excel 导入支持 .xlsx 和 .xls；模板会按当前选中的 Excel 格式下载。JSON 适合完整备份，Excel 适合日常编辑。</p>
 
             <div class="inventory-table-wrap" id="inventoryTableWrap" hidden>
                 <table class="inventory-table reagent-table">
@@ -200,8 +212,8 @@
                     </label>
 
                     <label class="inventory-field" for="molecularWeight">
-                        <span>分子量（g/mol）</span>
-                        <input id="molecularWeight" name="molecularWeight" type="number" min="0.000001" max="1000000000" step="any" inputmode="decimal" placeholder="选填">
+                        <span>分子量</span>
+                        <input id="molecularWeight" name="molecularWeight" type="text" maxlength="80" autocomplete="off" placeholder="例如：180.16 g/mol 或 40–60 kDa">
                     </label>
                 </div>
             </fieldset>
@@ -246,6 +258,7 @@
                             <option value="">请选择</option>
                             <option value="yes">是</option>
                             <option value="no">否</option>
+                            <option value="unspecified">不区分</option>
                         </select>
                     </label>
 
@@ -281,7 +294,7 @@
                 </div>
             </fieldset>
 
-            <p class="form-help">标有 * 的项目为必填项；CAS 号和分子量可在不适用时留空；库存量最多保留 6 位小数。</p>
+            <p class="form-help">标有 * 的项目为必填项；CAS 号和分子量可留空，分子量可以填写数值、范围和单位；库存量最多保留 6 位小数。</p>
             <p class="dialog-status" id="reagentDialogStatus" aria-live="assertive" aria-atomic="true"></p>
             <div class="dialog-actions">
                 <button class="inventory-button inventory-button-secondary" id="cancelReagentButton" type="button">取消</button>
@@ -327,7 +340,7 @@
             <div class="dialog-heading">
                 <div>
                     <p class="inventory-eyebrow">RESTORE</p>
-                    <h2 id="importDialogTitle">导入试剂备份</h2>
+                    <h2 id="importDialogTitle">导入试剂数据</h2>
                 </div>
                 <button class="dialog-close" id="closeImportDialogButton" type="button" aria-label="关闭">×</button>
             </div>
@@ -336,11 +349,11 @@
                 <legend>导入方式</legend>
                 <label>
                     <input type="radio" name="importMode" value="merge" checked>
-                    <span><strong>合并数据</strong><small>保留现有记录；相同 ID 的记录使用备份内容。</small></span>
+                    <span><strong>合并数据</strong><small>按记录 ID 更新，空 ID 作为新记录；文件中没有的现有记录仍保留。</small></span>
                 </label>
                 <label>
                     <input type="radio" name="importMode" value="replace">
-                    <span><strong>替换全部</strong><small>清空当前清单，只保留备份中的记录。</small></span>
+                    <span><strong>替换全部</strong><small>用文件完整替换当前清单；文件中没有的记录将被删除。</small></span>
                 </label>
             </fieldset>
             <p class="dialog-status" id="importDialogStatus" aria-live="assertive" aria-atomic="true"></p>
@@ -351,7 +364,7 @@
         </form>
     </dialog>
 
-    <footer>Page last updated: 2026-09-01</footer>
+    <footer>Page last updated: 2026-09-03</footer>
 </body>
 
 </html>
